@@ -1,19 +1,18 @@
-name: My Test Single Project
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    types: [opened, synchronize, reopened]
+name: CI
+on: [push]
+
 jobs:
-  sonarcloud:
-    name: SonarCloud
+  test:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
         with:
-          fetch-depth: 0  
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
-        env: 
+          node-version: '20'
+
+      - name: SonarCloud scan
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
