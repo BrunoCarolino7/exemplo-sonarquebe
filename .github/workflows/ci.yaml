@@ -2,15 +2,15 @@ name: CI
 on: [push]
 
 jobs:
-    test:
-        runs-on: ubuntu-latest
-        
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v2
+  test:
+    runs-on: ubuntu-latest
 
-            - name: SonarCloud scan
-              uses: sonarsource/sonarcloud-github-action@master
-              env:
-                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: SonarCloud scan
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
