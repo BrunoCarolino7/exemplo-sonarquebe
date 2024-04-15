@@ -41,4 +41,11 @@ public class ItemController(ItemService itemService, CacheSettings cacheSettings
     {
         return Ok(await _itemService.ValidarForaPrecoPreAprovado(item, _cacheSettings));
     }
+
+      [HttpPost]
+    [Route("")]
+    public async Task<IActionResult> TesteMethod([FromQuery] PrecoPreAprovadoInputDto item)
+    {
+        return Ok();
+    }
 }
